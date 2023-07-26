@@ -13,10 +13,9 @@ export const GET = async(req : NextApiRequest, res : NextApiResponse) =>{
     }
 }
 
-export const POST = async(req : Request, res : NextApiResponse) =>{
+export const POST = async(req : NextApiRequest, res : NextApiResponse) =>{
     await dbConnect()
-    const body = await req.json();
-    const user = await UserModel.create(body);
+    const user = await UserModel.create(req.body);
     if(user){
         return NextResponse.json({data : user , status : 200 , message : "user fetched  sucessfully" })
     } else {

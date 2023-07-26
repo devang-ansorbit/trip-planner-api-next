@@ -8,7 +8,7 @@ export const GET = async() =>{
     if(user) {
        return NextResponse.json({data : user , status : 200 , message : "user fetched  sucessfully" })
     } else {
-        return NextResponse.json({ status : 400, message : 'user not found'})
+        return NextResponse.json({ status : 404, message : 'users not found'})
     }
 }
 
@@ -16,7 +16,7 @@ export const POST = async(req : NextRequest) =>{
     await dbConnect()
     const user = await UserModel.create(req.body);
     if(user){
-        return NextResponse.json({data : user , status : 200 , message : "user fetched  sucessfully" })
+        return NextResponse.json({data : user , status : 200 , message : "user fetched sucessfully" })
     } else {
         return NextResponse.json({ status : 400 , message : "failed to create user"})
     }

@@ -1,9 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import {UserModel} from "../../models"
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/app/db/dbConnect";
 
-export const GET = async(req : NextApiRequest, res : NextApiResponse) =>{
+export const GET = async() =>{
     await dbConnect()
     const user = await UserModel.find();
     if(user) {
@@ -13,7 +12,7 @@ export const GET = async(req : NextApiRequest, res : NextApiResponse) =>{
     }
 }
 
-export const POST = async(req : NextApiRequest, res : NextApiResponse) =>{
+export const POST = async(req : NextRequest) =>{
     await dbConnect()
     const user = await UserModel.create(req.body);
     if(user){
